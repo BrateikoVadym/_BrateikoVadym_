@@ -1,0 +1,23 @@
+import java.util.Scanner;
+
+public class task4 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        
+        System.out.print("Введіть x: ");
+        double x = scanner.nextDouble();
+        double result;
+
+        if (x < -2) {
+            result = 1.0 / Math.tan(x); // ctg(x) = 1 / tan(x)
+        } else if (x >= -2 && x <= 2) {
+            result = 9 * Math.pow(x, 2);
+        } else {
+            result = Math.pow(Math.sin(x), 2);
+        }
+
+        System.out.println("f(" + x + ") = " + result);
+
+        scanner.close();
+    }
+}
