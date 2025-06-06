@@ -1,0 +1,30 @@
+import java.util.Scanner;
+
+public class task2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введіть x: ");
+        double x = scanner.nextDouble();
+        System.out.print("Введіть y: ");
+        double y = scanner.nextDouble();
+
+        if (x > 0 && y > 0) {
+            System.out.println("Точка знаходиться в I квадранті.");
+        } else if (x < 0 && y > 0) {
+            System.out.println("Точка знаходиться в II квадранті.");
+        } else if (x < 0 && y < 0) {
+            System.out.println("Точка знаходиться в III квадранті.");
+        } else if (x > 0 && y < 0) {
+            System.out.println("Точка знаходиться в IV квадранті.");
+        } else if (x == 0 && y != 0) {
+            System.out.println("Точка знаходиться на осі Y.");
+        } else if (y == 0 && x != 0) {
+            System.out.println("Точка знаходиться на осі X.");
+        } else {
+            System.out.println("Точка знаходиться в початку координат.");
+        }
+
+        scanner.close();
+    }
+}
