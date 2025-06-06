@@ -1,0 +1,69 @@
+import java.io.*;               // Імпортуємо класи для роботи з файлами
+import java.util.Random;        // Імпортуємо клас Random для генерації випадкових чисел
+
+public class Main {
+
+    public static void main(String[] args) {
+        // Перевірка наявності всіх необхідних аргументів командного рядка
+        if (args.length < 4) //скільки параметрів передано при запуску(length це властивість масиву, яка повертає кількість елементів у ньому)
+        {
+            System.out.println("Використання:");
+            System.out.println("java FileRandomNumbers <ім'я_файлу> <кількість_чисел> <нижня_межа> <верхня_межа>");
+            return; // Якщо аргументів недостатньо – припиняємо виконання
+        }
+
+        // Зчитування аргументів з командного рядка
+        String fileName = args[0];           // Ім'я файлу, в який будуть записані числа
+        int count = Integer.parseInt(args[1]); // Кількість чисел для генерації
+        int b1 = Integer.parseInt(args[2]);    // Нижня межа для випадкових чисел
+        int b2 = Integer.parseInt(args[3]);    // Верхня межа
+
+        // 1. Створення файлу (якщо не існує) та запис випадкових чисел у нього
+        try // спроба виконати код програми (це захист від помилок)
+        {
+            File file = new File(fileName); // Створюємо об'єкт файлу з іменем, заданим у аргументах
+            if (!file.exists()) {
+                file.createNewFile(); // Якщо файл не існує – створюємо його
+                System.out.println("Файл створено: " + fileName);
+            } else {
+                System.out.println("Файл вже існує: " + fileName);
+            }
+
+            FileWriter writer = new FileWriter(file); // Відкриваємо файл для запису (перезаписуємо)
+            Random rand = new Random();               // Створюємо генератор випадкових чисел
+
+            // Генеруємо і записуємо випадкові числа у файл
+            for (int i = 0; i < count; i++) {
+                int number = rand.nextInt(b2 - b1 + 1) + b1; // Випадкове число в межах [b1, b2]
+                writer.write(number + " ");                 // Записуємо число з пробілом
+            }
+
+            writer.close(); // Закриваємо файл після запису
+            System.out.println("Випадкові числа записані у файл.");
+
+        } catch (IOException e) //переходить сюда якщо невийшло виконати try
+        {
+            // Обробка помилки під час створення або запису у файл
+            System.out.println("Помилка при записі у файл: " + e.getMessage());
+            return;
+        }
+
+        // 2. Зчитування даних з файлу і виведення на екран
+        try {
+            FileReader reader = new FileReader(fileName);         // Відкриваємо файл для читання
+            BufferedReader br = new BufferedReader(reader);       // Обгортаємо для ефективного читання рядків
+            String line;
+
+            System.out.println("\nВміст файлу:");
+            while ((line = br.readLine()) != null) {              // Зчитуємо файл пострічково
+                System.out.println(line);                         // Виводимо кожен рядок на екран
+            }
+
+            br.close(); // Закриваємо зчитувач після використання
+
+        } catch (IOException e) {
+            // Обробка помилки при зчитуванні
+            System.out.println("Помилка при зчитуванні з файлу: " + e.getMessage());
+        }
+    }
+}
