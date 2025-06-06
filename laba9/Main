@@ -1,0 +1,93 @@
+// Імпортуємо класи для створення графічного інтерфейсу
+import javax.swing.*;              //  це набір багатоплатформенних графічних компонентів, які дозволяють створювати вікна, кнопки, поля введення, меню тощо.
+import java.awt.*;                // Для компонування (layout) елементів на формі
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener; // Для обробки подій (наприклад, натискання кнопки)
+
+public class Main extends JFrame {  // Клас Main є вікном (успадковує JFrame)
+
+    // Оголошення текстових полів, які будуть використовуватись у вікні
+    private JTextField densityField;  // поле для введення густини (ρ)
+    private JTextField heightField;   // поле для введення висоти (h)
+    private JTextField resultField;   // поле, де буде відображатися результат (p)
+
+    // Конструктор класу (викликається при створенні об’єкта Main)
+    public Main() //конструктор класу
+    {
+        super("Обчислення тиску стовпа рідини");  // Назва вікна
+
+        setSize(400, 250);                        // Розміри вікна (МЕТОД)
+        setDefaultCloseOperation(EXIT_ON_CLOSE); // Закриття програми при закритті вікна
+        setLocationRelativeTo(null);              // Центрує вікно на екрані
+
+        // Створюємо основну панель з сітковим компонуванням 4 рядки × 2 колонки
+        JPanel panel = new JPanel();
+        panel.setLayout(new GridLayout(4, 2, 10, 10)); // Відступи між елементами 10px
+        panel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // Відступи всередині панелі
+
+        // Створення мітки та поля для густини
+        JLabel densityLabel = new JLabel("Густина ρ (кг/м³):");
+        densityField = new JTextField();
+
+        // Створення мітки та поля для висоти
+        JLabel heightLabel = new JLabel("Висота h (м):");
+        heightField = new JTextField();
+
+        // Створення мітки та поля для тиску
+        JLabel resultLabel = new JLabel("Тиск p (Па):");
+        resultField = new JTextField();
+        resultField.setEditable(false);  // Забороняємо користувачу редагувати поле результату
+
+        // Кнопка для обчислення
+        JButton calculateButton = new JButton("Обчислити");
+
+        // Додаємо обробник події для кнопки
+        calculateButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    // Зчитуємо значення густини та висоти з текстових полів
+                    double density = Double.parseDouble(densityField.getText());
+                    double height = Double.parseDouble(heightField.getText());
+                    double g = 9.81; // Прискорення вільного падіння (м/с²)
+
+                    // Обчислюємо тиск: p = ρgh
+                    double pressure = density * g * height;
+
+                    // Виводимо результат з точністю до 2 знаків після коми
+                    resultField.setText(String.format("%.2f", pressure));
+                } catch (NumberFormatException ex) {
+                    // Якщо введено не число — показуємо вікно з помилкою
+                    JOptionPane.showMessageDialog(
+                            null,
+                            "Введіть коректні числові значення!",
+                            "Помилка",
+                            JOptionPane.ERROR_MESSAGE
+                    );
+                }
+            }
+        });
+
+        // Додаємо усі компоненти на панель (по порядку)
+        panel.add(densityLabel);
+        panel.add(densityField);
+
+        panel.add(heightLabel);
+        panel.add(heightField);
+
+        panel.add(resultLabel);
+        panel.add(resultField);
+
+        panel.add(new JLabel());         // Пусте місце — для вирівнювання кнопки
+        panel.add(calculateButton);      // Кнопка "Обчислити"
+
+        // Додаємо панель до головного вікна
+        add(panel);
+        setVisible(true);  // Робимо вікно видимим
+    }
+
+    // Головний метод — запуск програми
+    public static void main(String[] args) {
+        new Main();  // Створюємо об'єкт класу Main (вікно), що автоматично покаже GUI
+    }
+}
