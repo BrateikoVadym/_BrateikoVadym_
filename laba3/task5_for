@@ -1,0 +1,45 @@
+import java.util.Scanner;
+
+public class task5_for {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in); // Створюе об"єкт що можно було вводити данні
+
+        // Введення меж табуляції та кроку
+        System.out.print("Введіть початок проміжку (a): ");
+        double a = scanner.nextDouble();
+        System.out.print("Введіть кінець проміжку (b): ");
+        double b = scanner.nextDouble();
+        System.out.print("Введіть крок (h): ");
+        double h = scanner.nextDouble();
+
+        // Введення діапазону для підрахунку значень
+        System.out.print("Введіть нижню границю діапазону: ");
+        double minRange = scanner.nextDouble();
+        System.out.print("Введіть верхню границю діапазону: ");
+        double maxRange = scanner.nextDouble();
+
+        int count = 0; // Лічильник значень у діапазоні
+
+        System.out.println("\nТабуляція функції:");
+
+        // Цикл for для обчислення значень функції
+        for (double x = a; x <= b; x += h) {
+            double f = x * x - 3 * x + 2; // Формула функції f(x)
+            System.out.printf("f(%.2f) = %.2f\n", x, f);
+
+            // Перевірка, чи потрапляє значення у введений діапазон
+            if (f >= minRange && f <= maxRange) {
+                count++;
+            }
+        }
+
+        // Виведення результату
+        if (count > 0) {
+            System.out.println("\nКількість значень у заданому діапазоні: " + count);
+        } else {
+            System.out.println("\nЗначення функції не потрапляють у заданий діапазон.");
+        }
+
+        scanner.close();
+    }
+}
