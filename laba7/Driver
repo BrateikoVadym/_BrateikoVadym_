@@ -1,0 +1,43 @@
+// Клас Driver описує водія з ім'ям, віком та досвідом (стажем)
+public class Driver {
+
+    // Приватні поля класу — доступні лише всередині цього класу
+    private String name;        // Ім’я водія
+    private int age;            // Вік водія
+    private int experience;     // Стаж (досвід) водія у роках
+
+    // Конструктор класу — викликається під час створення нового об'єкта Driver
+    // Він ініціалізує всі поля переданими значеннями
+    public Driver(String name, int age, int experience) {
+        this.name = name;               // this.name — поле класу, name — параметр конструктора
+        this.age = age;
+        this.experience = experience;
+    }
+
+    // Гетери — методи для отримання значень полів (інкапсуляція)
+    public String getName() {
+        return name;                    // Повертає ім’я водія
+    }
+
+    public int getAge() {
+        return age;                     // Повертає вік водія
+    }
+
+    public int getExperience() {
+        return experience;              // Повертає досвід (стаж) водія
+    }
+
+    // Метод для збільшення стажу на 1 рік
+    public void increaseExperience() {
+        this.experience++;              // Збільшує значення поля experience на 1
+    }
+
+    // Перевизначення методу toString — дозволяє красиво виводити об'єкт у вигляді рядка
+    @Override //  це анотація в Java. Вона повідомляє компілятору (і програмісту), що метод, який ми пишемо, перевизначає метод із батьківського (над)класу або з інтерфейсу.
+
+
+    public String toString() {
+        return name + " (вік: " + age + ", стаж: " + experience + ")";
+        // Наприклад: "Іван (вік: 28, стаж: 5)"
+    }
+}
