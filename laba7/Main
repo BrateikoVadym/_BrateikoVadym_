@@ -1,0 +1,54 @@
+import java.util.ArrayList; // Імпортуємо клас ArrayList для створення списку
+import java.util.List;      // Імпортуємо інтерфейс List
+
+public class Main {
+    public static void main(String[] args) {
+
+        //  Створення списку (масиву) автомобілів
+        List<Car> cars = new ArrayList<>();
+
+        //  Додаємо 10 автомобілів до списку. Кожен має: марку, потужність, водія, ціну і рік
+        cars.add(new Car("Toyota", 120, new Driver("Олег", 30, 6), 10000, 2015));
+        cars.add(new Car("BMW", 180, new Driver("Іван", 27, 3), 15000, 2016));
+        cars.add(new Car("Audi", 160, new Driver("Андрій", 24, 4), 14000, 2017));
+        cars.add(new Car("Ford", 130, new Driver("Василь", 26, 2), 11000, 2014));
+        cars.add(new Car("Chevrolet", 150, new Driver("Петро", 28, 5), 12000, 2018));
+        cars.add(new Car("Honda", 140, new Driver("Микола", 35, 2), 10500, 2013));
+        cars.add(new Car("Nissan", 145, new Driver("Юрій", 29, 4), 10800, 2015));
+        cars.add(new Car("Mazda", 135, new Driver("Роман", 33, 10), 10700, 2019));
+        cars.add(new Car("Hyundai", 125, new Driver("Тарас", 31, 6), 10200, 2020));
+        cars.add(new Car("Skoda", 115, new Driver("Дмитро", 22, 1), 9700, 2012));
+
+        //  Робимо "ремонт" половині автопарку
+        for (int i = 0; i < cars.size() / 2; i++) { // цикл для першої половини
+            Car car = cars.get(i); // отримуємо машину за індексом
+            car.setEnginePower(car.getEnginePower() * 1.1); // збільшуємо потужність на 10%
+            car.setDriver(new Driver("Новий_" + (i+1), 30, 5)); // встановлюємо нового водія
+        }
+
+        //  Збільшуємо потужність і ціну кожній другій машині (починаючи з індексу 1)
+        for (int i = 1; i < cars.size(); i += 2) {
+            Car car = cars.get(i); // отримуємо машину за індексом
+            car.setEnginePower(car.getEnginePower() * 1.1); // +10% потужність
+            car.setPrice(car.getPrice() * 1.05);            // +5% ціна
+        }
+
+        //  Підвищення кваліфікації: якщо водію >25 років і стаж <5 — додаємо 1 рік стажу
+        for (Car car : cars) {             // цикл for-each по кожному автомобілю
+            Driver d = car.getDriver();    // отримуємо водія
+            if (d.getExperience() < 5 && d.getAge() > 25) {
+                d.increaseExperience();    // додаємо 1 рік досвіду
+            }
+        }
+
+        //  Випадкове авто викликається за користувачем
+        Car chosen = Helper.getRandomCar(cars); // випадкова машина
+        Helper.arrive(chosen);                  // прибуття цієї машини
+
+        //  Вивід у консоль всього автопарку
+        System.out.println("\nАвтопарк:");
+        for (Car car : cars) {
+            System.out.println(car); // car.toString() виводить деталі про машину та водія
+        }
+    }
+}
