@@ -1,0 +1,52 @@
+// Імпортуємо класи для використання HashMap і Map
+import java.util.HashMap;
+import java.util.Map;
+
+public class work2 {
+    public static void main(String[] args) {
+
+        // Створюємо телефонну книгу (словник), де ключ — прізвище, значення — номер телефону
+        Map<String, String> phoneBook = new HashMap<>();
+
+        // Додаємо записи до телефонної книги (ключ - прізвище, значення - номер телефону)
+        phoneBook.put("Іванов", "0971234567");
+        phoneBook.put("Петренко", "0931122334");
+        phoneBook.put("Сидоренко", "0504455667");
+        phoneBook.put("Коваль", "0639988776");
+        phoneBook.put("Ткаченко", "0953344556");
+        phoneBook.put("Мельник", "0992233445");
+        phoneBook.put("Шевченко", "0678899001");
+        phoneBook.put("Бондар", "0731233211");
+        phoneBook.put("Козак", "0915566778");
+        phoneBook.put("Гончар", "0667788990");
+
+        // Виводимо всі записи телефонної книги
+        System.out.println("Телефонна книга:");
+        for (Map.Entry<String, String> entry : phoneBook.entrySet()) {
+            // Отримуємо ключ (прізвище) та значення (номер) і виводимо
+            System.out.println(entry.getKey() + ": " + entry.getValue());
+        }
+
+        // Пошук номера телефону за прізвищем
+        String search = "Сидоренко";
+        if (phoneBook.containsKey(search)) {
+            // Якщо такий ключ існує — виводимо номер
+            System.out.println("\nНомер для " + search + ": " + phoneBook.get(search));
+        } else {
+            // Якщо прізвище не знайдене
+            System.out.println("\nУ книзі відсутній такий абонент");
+        }
+
+        // Видалення одного запису з книги за прізвищем
+        phoneBook.remove("Мельник");
+
+        // Виводимо кількість записів після видалення
+        System.out.println("\nКількість записів у книзі: " + phoneBook.size());
+
+        // Перевірка наявності певного ключа (прізвища)
+        System.out.println("Чи є ключ 'Козак'? " + phoneBook.containsKey("Козак"));
+
+        // Перевірка, чи існує конкретне значення (номер телефону) серед усіх записів
+        System.out.println("Чи є номер '0992233445'? " + phoneBook.containsValue("0992233445"));
+    }
+}
