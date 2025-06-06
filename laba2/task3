@@ -1,0 +1,22 @@
+import java.util.Scanner;
+
+public class task3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Введіть число: ");
+        int num = scanner.nextInt();
+
+        if (num >= 10 && num <= 99 || num <= -10 && num >= -99) {
+            if (num % 2 == 0) {
+                System.out.println("Число є двозначним і парним.");
+            } else {
+                System.out.println("Число є двозначним, але не парним.");
+            }
+        } else {
+            System.out.println("Число не є двозначним.");
+        }
+
+        scanner.close();
+    }
+}
