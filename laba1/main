@@ -1,0 +1,117 @@
+public class MathOperations {
+    public static void main(String[] args) {
+        int a = 10, b = 20, c = 30, d = 40, e = 50, f = 60, g = 70, h = 80, i = 90, j = 100;
+
+        int sum = a + b + c + d + e + f + g + h + i + j;
+        int difference = a - b - c - d - e - f - g - h - i - j;
+        int product = a * b * c * d * e * f * g * h * i * j;
+        double division = (double) a / b / c / d / e / f / g / h / i / j; // Запобігання діленню на 0
+
+        System.out.println("Сума: " + sum);
+        System.out.println("Різниця: " + difference);
+        System.out.println("Добуток: " + product);
+        System.out.println("Частка: " + division);
+    }
+}
+public class Sentence {
+    public static void main(String[] args) {
+        String word1 = "Моя", word2 = "перша", word3 = "програма", word4 = "на", word5 = "Java", 
+               word6 = "виводить", word7 = "речення", word8 = "у", word9 = "консоль", word10 = "правильно";
+
+        String sentence = word1 + " " + word2 + " " + word3 + " " + word4 + " " + word5 + " " + 
+                          word6 + " " + word7 + " " + word8 + " " + word9 + " " + word10 + ".";
+        
+        System.out.println(sentence);
+    }
+}
+class User {
+    int id, age;
+    String name, surname;
+    double weight, height;
+
+    public User(int id, int age, String name, String surname, double weight, double height) {
+        this.id = id;
+        this.age = age;
+        this.name = name;
+        this.surname = surname;
+        this.weight = weight;
+        this.height = height;
+    }
+}
+
+public class UserTest {
+    public static void main(String[] args) {
+        User[] users = {
+            new User(1, 25, "Олександр", "Коваленко", 80.5, 1.75),
+            new User(2, 30, "Марія", "Іваненко", 65.0, 1.68),
+            new User(3, 22, "Петро", "Гринчук", 72.4, 1.80),
+            new User(4, 28, "Анна", "Сидорчук", 58.3, 1.65),
+            new User(5, 35, "Василь", "Мельник", 85.2, 1.85),
+            new User(6, 40, "Наталія", "Павленко", 62.5, 1.70),
+            new User(7, 33, "Ігор", "Шевченко", 90.1, 1.90),
+            new User(8, 29, "Олена", "Федорчук", 55.8, 1.60),
+            new User(9, 27, "Дмитро", "Литвин", 78.0, 1.78),
+            new User(10, 31, "Катерина", "Романенко", 68.4, 1.72)
+        };
+
+        int totalAge = 0;
+        double totalWeight = 0, totalHeight = 0;
+
+        for (User user : users) {
+            totalAge += user.age;
+            totalWeight += user.weight;
+            totalHeight += user.height;
+        }
+
+        System.out.println("Сума віків: " + totalAge);
+        System.out.println("Сума ваги: " + totalWeight);
+        System.out.println("Сума зросту: " + totalHeight);
+    }
+}
+class Car {
+    int horsepower;
+    double engineVolume;
+    String brand;
+    String model;
+    int year;
+    String color;
+    double price;
+
+    public Car(int horsepower, double engineVolume, String brand, String model, int year, String color, double price) {
+        this.horsepower = horsepower;
+        this.engineVolume = engineVolume;
+        this.brand = brand;
+        this.model = model;
+        this.year = year;
+        this.color = color;
+        this.price = price;
+    }
+}
+
+public class CarTest {
+    public static void main(String[] args) {
+        Car[] cars = {
+            new Car(150, 2.0, "Toyota", "Corolla", 2020, "Червоний", 20000),
+            new Car(180, 2.5, "Honda", "Accord", 2019, "Синій", 25000),
+            new Car(200, 3.0, "BMW", "X5", 2021, "Чорний", 50000),
+            new Car(250, 4.0, "Mercedes", "C-Class", 2022, "Сірий", 60000),
+            new Car(110, 1.6, "Hyundai", "Elantra", 2018, "Білий", 18000),
+            new Car(170, 2.2, "Mazda", "CX-5", 2021, "Червоний", 28000),
+            new Car(140, 1.8, "Volkswagen", "Golf", 2017, "Жовтий", 19000),
+            new Car(300, 5.0, "Ford", "Mustang", 2022, "Синій", 55000),
+            new Car(220, 3.5, "Audi", "A6", 2020, "Чорний", 45000),
+            new Car(160, 2.0, "Nissan", "Altima", 2019, "Зелений", 23000)
+        };
+
+        int totalHorsepower = 0;
+        double totalEngineVolume = 0;
+
+        for (Car car : cars) {
+            totalHorsepower += car.horsepower;
+            totalEngineVolume += car.engineVolume;
+        }
+
+        System.out.println("Загальна потужність: " + totalHorsepower + " к.с.");
+        System.out.println("Загальний об'єм двигунів: " + totalEngineVolume + " л");
+    }
+}
