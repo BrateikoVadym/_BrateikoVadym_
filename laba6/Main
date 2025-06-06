@@ -1,0 +1,291 @@
+// Завдання 1: Клас Person
+// Клас, що представляє особу з іменем і віком
+//Змінна — це місце в памʼяті, яке має назву і в якому зберігається значення
+class Person {
+    String fullName; // Повне ім'я особи
+    int age;         // Вік
+
+    // Конструктор без параметрів, викликає інший з дефолтними значеннями
+    //Конструктор — це спеціальний метод у класі, який викликається автоматично в момент створення нового об’єкта цього класу. Його головне завдання — ініціалізувати (заповнити) поля об’єкта початковими значеннями.
+    Person()
+    {
+        this("Невідомий", 0); //this - посилаеться на поточний об'єкт класу
+    }
+
+    // Конструктор з параметрами
+    Person(String fullName, int age) //Конструктор потім зміна з іменем і зміна з числами
+    {
+        this.fullName = fullName; //саме ця змінна = параметрам конструктора (типу string)
+        this.age = age;
+    }
+
+
+    void move() //void — це тип повернення для методів у Java, який означає, що метод не повертає жодного значення.
+    {
+        System.out.println(fullName + " дзвонить.");
+    }
+
+    // Метод — особа говорить
+    void talk()
+    {
+        System.out.println(fullName + " говорить.");
+    }
+}
+
+// Завдання 2: Клас Phone
+// Клас, що описує телефон з номером, моделлю та вагою
+class Phone
+{
+    String number, model; // Номер телефону та модель
+    double weight;        // Вага телефону
+
+    // Порожній конструктор
+    Phone() {}
+
+    // Конструктор з номером і моделлю
+    Phone(String number, String model)
+    {
+        this.number = number;
+        this.model = model;
+    }
+
+    // Конструктор з усіма полями
+    Phone(String number, String model, double weight)
+    {
+        this(number, model);        // Використання конструктора з двома параметрами
+        this.weight = weight;
+    }
+
+    // Метод виклику без номера
+    void receiveCall(String name)
+    {
+        System.out.println("Дзвонить " + name);
+    }
+
+    // Метод виклику з номером
+    void receiveCall(String name, String number)
+    {
+        System.out.println("Дзвонить " + name + " з номеру " + number);
+    }
+
+    // Повертає номер телефону
+    String getNumber()
+    {
+        return number;
+    }
+
+    // Метод надсилання повідомлень кільком абонентам
+    void sendMessage(String... numbers)
+    {
+        for (String num : numbers)
+            System.out.println("Повідомлення надіслано на номер: " + num);
+    }
+}
+
+// Завдання 3: Абстрактна фігура
+// Базовий клас з полем об'єму
+abstract class Shape //Абстрактний клас не можна створити безпосередньо (не можна створити об'єкт класу Shape напряму). Це лише базовий клас для інших класів, які успадковуватимуть його та надаватимуть конкретну реалізацію.
+{
+    double volume; // Об'єм фігури
+
+    // Метод отримання об'єму
+    //get — це загальна назва для методу, який повертає значення певної змінної або властивості об'єкта
+    double getVolume()
+    {
+        return volume;
+    }
+}
+
+// Фігура обертання з радіусом
+class SolidOfRevolution extends Shape
+{
+    double radius; // Радіус фігури
+
+    // Конструктор з радіусом і об'ємом
+    SolidOfRevolution(double r, double v)
+    {
+        radius = r;
+        volume = v;
+    }
+}
+
+// Циліндр: π * r² * h
+class Cylinder extends SolidOfRevolution
+{
+    Cylinder(double r, double h)
+    {
+        super(r, Math.PI * r * r * h); // Обчислюємо об’єм і передаємо в батьківський клас super - Зазвичай super() викликається в першому рядку конструктора дочірнього класу, якщо потрібно передати параметри в конструктор батьківського класу або викликати його без параметрів.
+        // r — це значення, яке передається в конструктор батьківського класу і зазвичай присвоюється полю radius у класі SolidOfRevolution. Math — це статичний клас в Java, який надає математичні функції та константи.
+    }
+}
+
+// Куля: (4/3)π * r³
+class Ball extends SolidOfRevolution
+{
+    Ball(double r)
+    {
+        super(r, (4.0 / 3) * Math.PI * Math.pow(r, 3)); // Обчислюємо об’єм кулі
+    }
+}
+
+// Піраміда: (S * h) / 3
+class Pyramid extends Shape
+{
+    Pyramid(double s, double h)
+    {
+        volume = s * h / 3; // Обчислення об'єму піраміди
+    }
+}
+
+// Завдання 4: Абстрактний автомобіль
+// Базовий клас із абстрактним методом brake
+abstract class Car
+{
+    String model; // Модель авто
+
+    Car(String model)
+    {
+        this.model = model;
+    }
+
+    // Метод газування
+    void gas()
+    {
+        System.out.println(model + " газує.");
+    }
+
+    // Абстрактний метод — має бути реалізований в дочірніх класах
+    abstract void brake();
+}
+
+// Клас savecar реалізує гальмування по-своєму
+class savecar extends Car
+{
+    savecar(String model)
+    {
+        super(model);
+    }
+
+    void brake()
+    {
+        System.out.println(model + " плавно гальмує.");
+    }
+}
+
+// Клас Truck реалізує гальмування інакше
+class fastcar extends Car
+{
+    fastcar(String model)
+    {
+        super(model);
+    }
+
+    void brake()
+    {
+        System.out.println(model + " гальмує з ривком.");
+    }
+}
+
+// Завдання 5: Студент з трьома оцінками
+class Student
+{
+    String lastName, firstName; // Прізвище та ім'я
+    int g1, g2, g3;             // Три оцінки
+
+    // Введення даних студента
+    void input(String ln, String fn, int g1, int g2, int g3)
+    {
+        lastName = ln;
+        firstName = fn;
+        this.g1 = g1;
+        this.g2 = g2;
+        this.g3 = g3;
+    }
+
+    // Виведення інформації про студента
+    void display()
+    {
+        System.out.printf("Студент: %s %s\nОцінки: %d %d %d\nСередній бал: %.2f\n",
+                lastName, firstName, g1, g2, g3, getAvg());
+    }
+
+    // Розрахунок середнього балу
+    double getAvg()
+    {
+        return (g1 + g2 + g3) / 3.0;
+    }
+}
+
+// Завдання 6: Розширений студент з курсом і спеціальністю
+class ExtendedStudent extends Student
+{
+    String specialty; // Спеціальність
+    int course;       // Курс
+
+    // Введення повної інформації
+    void inputAll(String ln, String fn, int g1, int g2, int g3, String sp, int c)
+    {
+        input(ln, fn, g1, g2, g3); // Виклик методу батьківського класу
+        specialty = sp;
+        course = c;
+    }
+
+    // Вивід усієї інформації про студента
+    void display()
+    {
+        super.display(); // Виклик display з базового класу
+        System.out.println("Спеціальність: " + specialty + "\nКурс: " + course);
+    }
+}
+
+// Головний клас для запуску всіх прикладів
+public class Main
+{
+    public static void main(String[] args)
+    {
+        // === Завдання 1 ===
+        System.out.println("\n=== Завдання 1 ===");
+        new Person().talk(); // Виклик talk() для об'єкта за замовчуванням
+        new Person("Олег", 30).move(); // Виклик move() для конкретної особи
+
+        // === Завдання 2 ===
+        System.out.println("\n=== Завдання 2 ===");
+        Phone p1 = new Phone("380...", "Apple", 110),
+                p2 = new Phone("380...", "Samsung", 140);
+
+        p1.receiveCall("Модель "+ p1.model + " Вага: " + p1.weight);
+
+
+        p2.receiveCall("Модель "+ p2.model + " Вага: " + p2.weight ,"380....");
+        p2.sendMessage("380...", "380....", "380..");
+
+        // === Завдання 3 ===
+        System.out.println("\n=== Завдання 3 ===");
+        System.out.printf("Куля: %.2f\nЦиліндр: %.2f\nПіраміда: %.2f\n",
+                new Ball(4).getVolume(),
+                new Cylinder(3, 5).getVolume(),
+                new Pyramid(10, 6).getVolume());
+
+        // === Завдання 4 ===
+        System.out.println("\n=== Завдання 4 ===");
+        Car s = new savecar("Безпечна"),
+                t = new fastcar("Швидкісна");
+
+        s.gas();
+        s.brake();
+        t.gas();
+        t.brake();
+
+        // === Завдання 5 ===
+        System.out.println("\n=== Завдання 5 ===");
+        Student st = new Student();
+        st.input("Олег", "О", 56, 75, 68);
+        st.display();
+
+        // === Завдання 6 ===
+        System.out.println("\n=== Завдання 6 ===");
+        ExtendedStudent est = new ExtendedStudent();
+        est.inputAll("Олег", "О", 95, 76, 100, "ІТ", 5);
+        est.display();
+    }
+}
