@@ -1,0 +1,27 @@
+import java.io.*;
+
+public class ReadNumbersFromFile {
+    public static void main(String[] args) {
+        if (args.length < 1) {
+            System.out.println("Використання: java ReadNumbersFromFile <ім'я_файлу>");
+            return;
+        }
+
+        String fileName = args[0];
+
+        try {
+            FileReader reader = new FileReader(fileName);
+            BufferedReader br = new BufferedReader(reader);
+
+            String line;
+            System.out.println("Зчитані числа з файлу:");
+            while ((line = br.readLine()) != null) {
+                System.out.println(line);
+            }
+
+            br.close();
+        } catch (IOException e) {
+            System.out.println("Помилка при зчитуванні: " + e.getMessage());
+        }
+    }
+}
