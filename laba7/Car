@@ -1,0 +1,62 @@
+// Клас Car представляє автомобіль у нашому сервісі таксі
+public class Car {
+
+    // --- Поля (змінні об'єкта Car) ---
+
+    private String brand;           // Марка автомобіля
+    private double enginePower;     // Потужність двигуна (у кінських силах або іншій одиниці)
+    private Driver driver;          // Водій, який закріплений за автомобілем
+    private double price;           // Ціна автомобіля
+    private int year;               // Рік випуску
+
+    // --- Конструктор (створення об'єкта Car з параметрами) ---
+
+    public Car(String brand, double enginePower, Driver driver, double price, int year) {
+        this.brand = brand;
+        this.enginePower = enginePower;
+        this.driver = driver;
+        this.price = price;
+        this.year = year;
+    }
+
+    // --- Геттери (методи для отримання значень полів) ---
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public double getEnginePower() {
+        return enginePower;
+    }
+
+    public Driver getDriver() {
+        return driver;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    // --- Сеттери (методи для зміни значень полів) ---
+
+    public void setEnginePower(double enginePower) {
+        this.enginePower = enginePower;
+    }
+
+    public void setDriver(Driver driver) {
+        this.driver = driver;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    // --- Перевизначення методу toString() для зручного виводу інформації про автомобіль ---
+
+    @Override //це анотація (annotation) у Java, яка вказує, що метод перевизначає (override) метод із батьківського класу або інтерфейсу
+    public String toString() {
+        // Виводить опис автомобіля, включаючи бренд, рік, потужність, ціну та інформацію про водія
+        return brand + " (" + year + ") | Потужність: " + enginePower +
+                " | Ціна: " + price + " | Водій: " + driver;
+    }
+}
