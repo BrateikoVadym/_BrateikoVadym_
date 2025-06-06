@@ -1,0 +1,25 @@
+import java.util.List;   // Імпорт класу List — потрібен для роботи з колекціями списків
+import java.util.Random; // Імпорт класу Random — використовується для випадкового вибору
+
+// Клас Helper містить допоміжні методи для роботи з автопарком
+public class Helper {
+
+    // Метод повертає випадковий автомобіль зі списку
+    public static Car getRandomCar(List<Car> cars) {
+        Random rand = new Random();                    // Створення генератора випадкових чисел
+        int index = rand.nextInt(cars.size());         // Випадковий індекс зі списку (від 0 до cars.size()-1)
+        Car chosen = cars.get(index);                  // Отримання автомобіля за випадковим індексом
+
+        // Вивід інформації про вибраний автомобіль та його водія
+        System.out.println("Автомобіль марки " + chosen.getBrand() +
+                " з водієм " + chosen.getDriver().getName() + " виїхав за вами.");
+
+        return chosen;  // Повернення вибраного автомобіля
+    }
+
+    // Метод повідомляє, що водій прибув на місце
+    public static void arrive(Car car) {
+        // Вивід повідомлення про прибуття
+        System.out.println("Водій " + car.getDriver().getName() + " прибув на місце.");
+    }
+}
