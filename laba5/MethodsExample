@@ -1,0 +1,65 @@
+// Оголошення публічного класу з назвою MethodsExample
+public class MethodsExample {
+
+    // Головний метод програми, з якого починається виконання
+    public static void main(String[] args) {
+        // Виклик методу для обчислення площі паралелограма з основою 5 і висотою 10
+        double area = calculateParallelogramArea(5, 10);
+        System.out.println("Площа паралелограма: " + area);
+
+        // Виклик методу для знаходження найменшого з трьох чисел: 7, 3, 5
+        int min = findMinOfThree(7, 3, 5);
+        System.out.println("Найменше число: " + min);
+
+        // Створення масиву з 10 цілих чисел
+        int[] numbers = {2, 17, 13, 6, 22, 31, 45, 66, 100, -18};
+
+        // Вивід масиву на екран
+        System.out.print("Масив: ");
+        printArray(numbers);
+
+        // Знаходження найбільшого числа в масиві
+        int max = findMaxInArray(numbers);
+        System.out.println("Найбільше число в масиві: " + max);
+    }
+
+    // Метод для обчислення площі паралелограма
+    // Приймає основу (base) і висоту (height), повертає результат множення
+    public static double calculateParallelogramArea(double base, double height) {
+        return base * height;
+    }
+
+    // Метод знаходить найменше з трьох чисел
+    public static int findMinOfThree(int a, int b, int c) {
+        int min = a; // Припускаємо, що найменше — перше число
+        if (b < min) {
+            min = b;  // Якщо друге менше, оновлюємо мінімум
+        }
+        if (c < min) {
+            min = c;  // Якщо третє ще менше, оновлюємо ще раз
+        }
+        System.out.println("Найменше число: " + min); // Виводимо результат
+        return min; // Повертаємо найменше значення
+    }
+
+    // Метод виводить усі елементи масиву на одному рядку
+    public static void printArray(int[] array) {
+        for (int num : array) {
+            // Кожне число друкується з пробілом
+            System.out.print(num + " ");
+        }
+        // Перехід на новий рядок після завершення виводу масиву
+        System.out.println();
+    }
+
+    // Метод знаходить і повертає найбільше число в масиві
+    public static int findMaxInArray(int[] array) {
+        int max = array[0]; // Припускаємо, що перший елемент — найбільший
+        for (int num : array) {
+            if (num > max) {
+                max = num; // Якщо знайдено більше число, оновлюємо max
+            }
+        }
+        return max; // Повертаємо знайдене найбільше число
+    }
+}
