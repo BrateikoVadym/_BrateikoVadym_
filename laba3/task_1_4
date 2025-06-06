@@ -1,0 +1,52 @@
+public class task_1_4 {
+    public static void main(String[] args) {
+
+        // Завдання 1: Виведення фрази 50 разів за допомогою циклів
+        String phrase = "Прагніть не до успіху, а до цінностей, які він дає"; // Оголошується змінна phrase
+        System.out.println("Завдання 1: Виведення фрази 50 разів за допомогою циклів");
+
+        // Використання циклу for
+        System.out.println("Використання циклу for:");
+        for (int i = 1; i <= 50; i++) {
+            System.out.println(i + ". " + phrase);
+        }
+
+        // Використання циклу while
+        System.out.println("\nВикористання циклу while:");
+        int count = 1;
+        while (count <= 50) {
+            System.out.println(count + ". " + phrase);
+            count++;
+        }
+
+        // Завдання 2: Виведення всіх комбінацій годин та хвилин (від 0 до 2 години)
+        System.out.println("\nЗавдання 2: Виведення годин та хвилин");
+        for (int h = 0; h <= 2; h++) {
+            for (int m = 0; m < 60; m++) {
+                System.out.println(h + " h " + m + " min");
+            }
+        }
+
+        // Завдання 3: Виведення всіх комбінацій годин та хвилин за допомогою while
+        System.out.println("\nЗавдання 3: Виведення годин та хвилин за допомогою while");
+        int h = 0;
+        while (h <= 2) {
+            int m = 0;
+            while (m < 60) {
+                System.out.println(h + " h " + m + " min");
+                m++;
+            }
+            h++;
+        }
+
+        // Завдання 4: Виведення всіх комбінацій годин, хвилин та секунд (від 0 до 2 годин)
+        System.out.println("\nЗавдання 4: Виведення годин, хвилин та секунд");
+        for (int h1 = 0; h1 <= 2; h1++) {
+            for (int m = 0; m < 60; m++) {
+                for (int s = 0; s < 60; s++) {
+                    System.out.println(h1 + " h " + m + " min " + s + " sec");
+                }
+            }
+        }
+    }
+}
